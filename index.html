@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple Markdown Parser</title>
+    <meta
+      name="description"
+      content="A lightweight online markdown parser that converts markdown into readable HTML. Copy plain text or HTML with one click. Free and open-source."
+    />
+    <meta
+      name="keywords"
+      content="markdown, html, online parser, markdown editor, markdown viewer, simple markdown, postman markdown parser, markdown to html"
+    />
+    <meta property="og:title" content="Simple Markdown Parser" />
+    <meta
+      property="og:description"
+      content="Convert your markdown to readable HTML. Split view, responsive, copy buttons and more."
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://yourusername.github.io/simple-markdown-parser/"
+    />
+    <script src="/js/tailiwindcss-3.4.16.js"></script>
+  </head>
+  <body class="bg-yellow-50 text-gray-800 font-sans">
+    <header
+      class="bg-yellow-300 px-6 py-4 flex flex-col md:flex-row items-center justify-between shadow-md"
+    >
+      <h1 class="text-2xl font-bold tracking-wide">Simple Markdown Parser</h1>
+      <nav class="mt-2 md:mt-0 space-x-4">
+        <a
+          href="#"
+          class="font-medium text-gray-700 hover:text-gray-900 transition"
+          >Home</a
+        >
+        <a
+          href="#tutorial"
+          class="font-medium text-gray-700 hover:text-gray-900 transition"
+          >Tutorial</a
+        >
+        <a
+          href="#about"
+          class="font-medium text-gray-700 hover:text-gray-900 transition"
+          >About</a
+        >
+        <a
+          href="https://github.com/yourusername/simple-markdown-parser"
+          target="_blank"
+          class="font-medium text-gray-700 hover:text-gray-900 transition"
+          >GitHub</a
+        >
+      </nav>
+    </header>
+
+    <section class="flex flex-col md:flex-row flex-wrap gap-6 p-6">
+      <div class="editor flex-1 min-w-[300px]">
+        <h2 class="text-xl font-semibold mb-2">Markdown Input</h2>
+        <textarea
+          id="markdown"
+          class="w-full min-h-72 h-auto p-4 border border-yellow-300 rounded-lg text-base resize-y shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-400"
+          placeholder="Type or paste your markdown here..."
+        ></textarea>
+        <div class="buttons mt-4 flex flex-wrap gap-2">
+          <button
+            onclick="copyText()"
+            class="bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold py-2 px-4 rounded shadow"
+          >
+            Copy Plain Text
+          </button>
+          <button
+            onclick="copyHTML()"
+            class="bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold py-2 px-4 rounded shadow"
+          >
+            Copy HTML
+          </button>
+        </div>
+      </div>
+      <div class="preview flex-1 min-w-[300px]">
+        <h2 class="text-xl font-semibold mb-2">Preview</h2>
+        <div
+          id="output"
+          class="prose prose-yellow border border-yellow-300 rounded-lg p-4 bg-white min-h-72 h-auto shadow-sm"
+        ></div>
+      </div>
+    </section>
+
+    <section class="p-6">
+      <p class="text-lg">
+        This is a <span class="font-semibold">simple markdown parser</span>. You
+        can copy and paste your markdown into
+        <span class="italic">HTML formatted content</span>.
+      </p>
+    </section>
+
+    <section class="p-6">
+      <h2 class="text-xl font-bold mb-4">Sample Markdown</h2>
+      <div
+        class="bg-white p-4 border border-yellow-200 rounded-lg overflow-auto text-sm whitespace-pre-wrap shadow"
+      >
+        <pre>
+# Welcome to Simple Markdown Parser\n\nThis is a simple **markdown parser** built using _vanilla JS_ and **Tailwind CSS**.\n\n## Features\n\n- Live markdown preview\n- Copy plain text\n- Copy HTML content\n- Responsive UI\n- Lightweight and fast\n\n## Usage\n\n1. Type or paste markdown in the left panel.\n2. View live preview on the right.\n3. Copy what you need!\n\n## Example Code\n\n```js\nfunction hello() {\n  console.log("Hello, world!");\n}\n```\n\nMy favorite search engine is [Duck Duck Go](https://duckduckgo.com).</pre
+        >
+      </div>
+    </section>
+
+    <section id="tutorial" class="p-6">
+      <h2 class="text-xl font-bold mb-2">How to Use This</h2>
+      <ol class="list-decimal list-inside space-y-1 text-base">
+        <li>Paste or type markdown on the left.</li>
+        <li>See the HTML preview on the right.</li>
+        <li>Click the copy button for plain text or HTML.</li>
+      </ol>
+    </section>
+
+    <section id="about" class="p-6">
+      <h2 class="text-xl font-bold mb-2">About</h2>
+      <p class="text-base leading-relaxed">
+        I use AI tools like Postman daily to prompt APIs and analyze markdown
+        responses. Most online markdown viewers are cluttered or don’t support
+        raw HTML copying. This tool was built to solve that problem with a clean
+        interface and practical copy features.
+      </p>
+    </section>
+
+    <footer class="text-center py-4 bg-yellow-300 mt-6 shadow-inner">
+      &copy; 2025 Simple Markdown Parser. All rights reserved.
+    </footer>
+
+    <script src="/js/marked.umd.js"></script>
+    <script>
+      const mdInput = document.getElementById("markdown");
+      const output = document.getElementById("output");
+
+      mdInput.addEventListener("input", () => {
+        let text = mdInput.value.replace(/\\n/g, "\n");
+        output.innerHTML = marked.parse(text);
+      });
+
+      function copyText() {
+        navigator.clipboard.writeText(mdInput.value.replace(/\\n/g, "\n"));
+        alert("Plain text copied!");
+      }
+
+      function copyHTML() {
+        navigator.clipboard.writeText(output.innerHTML);
+        alert("HTML copied!");
+      }
+    </script>
+  </body>
+</html>
